@@ -6,11 +6,11 @@ async function login(req, res) {
     const user = userModel.getUserByUsername(username);
 
     if (!user)
-        return res.status(403).json({ code: 403, message: "Usuario no encontrado" });
+        return res.status(403).json({ code: 403, message: "User Not Found" });
 
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid)
-        return res.status(403).json({ code: 403, message: "Contraseña incorrecta" });
+        return res.status(403).json({ code: 403, message: "Wrong Password" });
 
     return res.status(200).json({
         code: 200,
